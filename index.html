@@ -1,0 +1,69 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id = "titulo">Ejercicio 1</div>
+    <div>Pon tu Numero:  <input type="text" id="input">
+    <button onclick="aleatorizar()">Aleatorizar</button>
+    </div>
+    <div>
+        <input type="text" id="resultado"></div>
+    <div id="grafico"></div>
+    <div id="titulo">Ejercicio 2</div>
+    <div id = "ejercicio2">
+        <div id ="main-cont">
+            <div id="tabla">
+                <div id="b">h</div>
+                <div id="b"></div>
+                <div id="b"></div>
+                <div id="b">u</div>
+                <div id="b"></div>
+                <div id="b"></div>
+                <div id="b"></div>
+                <div id="b"></div>
+            </div>
+            <div id ="grafico2"></div>
+        </div>
+        
+    </div>
+    <script>
+        document.getElementById('resultado').disabled = true;
+        function grafico_dispersion(px,py){
+            scatter = {
+            x:px,
+            y:py,
+            mode: 'markers + lines'
+            };
+            data = [scatter];
+            Plotly.newPlot("grafico",data);
+        }
+        function aleatorizar(){
+            var N = parseInt(document.getElementById('input').value);
+            document.getElementById('resultado').value = '';
+            var y = new Array();
+            var x = new Array();
+            for (i = 0;i<N;i++){
+                var num = parseInt((31-12)*Math.random()+12);
+                document.getElementById("resultado").value = document.getElementById("resultado").value+' '+num;
+                y.push(num);
+                x.push(i+1);
+            }
+            grafico_dispersion(x,y);
+        //Plotly.animate("grafico",{
+         //   data:[{y:[Math.random()*10,Math.random()*10,Math.random()*10]}]
+        //})
+
+        }
+    </script>
+
+
+</body>
+</html>
