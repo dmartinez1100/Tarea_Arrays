@@ -18,22 +18,23 @@
         <input type="text" id="resultado"></div>
     <div id="grafico"></div>
     <div id="titulo">Ejercicio 2</div>
-    <div id = "ejercicio2">
         <div id ="main-cont">
             <div id="tabla">
-                <div id="b">h</div>
-                <div id="b"></div>
-                <div id="b"></div>
-                <div id="b">u</div>
-                <div id="b"></div>
-                <div id="b"></div>
-                <div id="b"></div>
-                <div id="b"></div>
+                <div class="b b1">Categoria</div>
+                <div class="b b1">Conteo</div>
+                <div class="b"><input type="text" id="cat1" value="Categoria 1" class="c"></div>
+                <div class="b"><input type="text" id="cont1" value="Conteo 1" class="c"></div>
+                <div class="b"><input type="text" id="cat2" value="Categoria 2" class="c"></div>
+                <div class="b"><input type="text" id="cont2" value="Conteo 2" class="c"></div>
+                <div class="b"><input type="text" id="cat3" value="Categoria 3" class="c"></div>
+                <div class="b"><input type="text" id="cont3" value="Conteo 3" class="c"></div>
             </div>
             <div id ="grafico2"></div>
         </div>
-        
-    </div>
+        <div class="botones_finales">
+            <div><button onclick="grafico_barras()" class="c">Graficar</button></div>
+            <div><button onclick="reset()" class="c">Reset</button></div>
+        </div>
     <script>
         document.getElementById('resultado').disabled = true;
         function grafico_dispersion(px,py){
@@ -57,10 +58,44 @@
                 x.push(i+1);
             }
             grafico_dispersion(x,y);
-        //Plotly.animate("grafico",{
-         //   data:[{y:[Math.random()*10,Math.random()*10,Math.random()*10]}]
-        //})
-
+        }
+        function reset(){
+            document.getElementById("cat1").value = "Categoria 1";
+            document.getElementById("cat1").disabled = false;
+            document.getElementById("cat2").value = "Categoria 2";
+            document.getElementById("cat2").disabled = false;
+            document.getElementById("cat3").value = "Categoria 3";
+            document.getElementById("cat3").disabled = false;
+            document.getElementById("cont1").value = "Conteo 1";
+            document.getElementById("cont1").disabled = false;
+            document.getElementById("cont2").value = "Conteo 2";
+            document.getElementById("cont2").disabled = false;
+            document.getElementById("cont3").value = "Conteo 3";
+            document.getElementById("cont3").disabled = false;
+            Plotly.newPlot("grafico2",[]);
+        }
+        function grafico_barras(){
+            var string1 = document.getElementById("cat1").value;
+            document.getElementById("cat1").disabled = true;
+            var string2 = document.getElementById("cat2").value;
+            document.getElementById("cat2").disabled = true;
+            var string3 = document.getElementById("cat3").value;
+            document.getElementById("cat3").disabled = true;
+            var num1 = parseInt(document.getElementById("cont1").value);
+            document.getElementById("cont1").disabled = true;
+            var num2 = parseInt(document.getElementById("cont2").value);
+            document.getElementById("cont2").disabled = true;
+            var num3 = parseInt(document.getElementById("cont3").value);
+            document.getElementById("cont3").disabled = true;
+            var data2 = [
+                {
+                    x: [string1,string2,string3],
+                    y: [num1,num2,num3],
+                    type:'bar'
+                }
+            ];
+            Plotly.newPlot("grafico2",data2);
+            console.log(data2);
         }
     </script>
 
